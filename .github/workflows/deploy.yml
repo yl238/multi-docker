@@ -9,8 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Log in to Dockerhub
-        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build and run tests
         run: |
           docker build -t yl238/multi-test -f ./client/Dockerfile.dev ./client
@@ -23,6 +21,7 @@ jobs:
           docker build -t yl238/multi-worker ./worker
       - name: Push to Dockerhub
         run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
           docker push yl238/multi-client
           docker push yl238/multi-nginx
           docker push yl238/multi-server
