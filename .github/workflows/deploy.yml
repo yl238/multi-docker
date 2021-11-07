@@ -20,7 +20,7 @@ jobs:
           docker build -t yl238/multi-client ./client
           docker build -t yl238/multi-nginx ./nginx
           docker build -t yl238/multi-server ./server
-          docker build -t yl238/mult-worker ./worker
+          docker build -t yl238/multi-worker ./worker
       - name: Push to Dockerhub
         run: |
           docker push yl238/multi-client
